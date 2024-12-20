@@ -10,14 +10,14 @@ jest.mock("../index.js", ()=> ({
     addTrade: jest.fn(),
 }));
 
-// beforeAll((done) => {
-//     server = http.createServer(app);
-//     server.listen(3010, done);
-// });
+beforeAll((done) => {
+    server = http.createServer(app);
+    server.listen(3001, done);
+});
 
-// afterAll((done) => {
-//     server.close(done)
-// });
+afterAll((done) => {
+    server.close(done)
+});
 
 describe('Stock Trading API', () => {
     // Test 1: Get All Stocks
@@ -110,7 +110,6 @@ describe('Stock Trading API', () => {
             .send(newTrade);
 
         expect(response.status).toBe(201);
-        //expect(addTrade).toHaveBeenCalledTimes(1);
         expect(response.body.trade).toMatchObject(newTrade);
     });
 });
